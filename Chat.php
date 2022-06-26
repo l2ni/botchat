@@ -5,12 +5,6 @@ use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\Exception;
 use Ratchet\Http\HttpServer;
-//error_reporting( 0 );
-ini_set( 'memory_limit', -1 );
-
-//require __DIR__ . '/db.php';
-require '/../../backend/db.php';
-require __DIR__ . '/bot.php';
 
 class Chat implements MessageComponentInterface  {
     private $users;
@@ -33,9 +27,7 @@ class Chat implements MessageComponentInterface  {
         $this->clients->attach( $conn );
 
         try {
-            $query = $conn->WebSocket->request->getQuery();
 
-            //$query = $conn->httpRequest->getUri()->getQuery();
             $query_list = explode( '&', $query );
             $usr = trim( substr( $query_list[0], 3 ) );
             $user_id = $usr;
